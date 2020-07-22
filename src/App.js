@@ -9,9 +9,11 @@ const cardStyle = {
     display:'block',
     borderRadius:'6px',
     backgroundColor:'#FFF',
-    minWidth:'300px',
+    minWidth:'380px',
+    maxWidth:'550px',
     minHeight:'200px',
-    border:'1px solid #00000020'
+    border:'1px solid #00000020',
+    boxShadow:'5px 5px #00000002'
 }
 
 const withCard = WrappedComponent => (props) => {
@@ -26,14 +28,14 @@ function App() {
     const SalaryFormCard = withCard(SalaryCaptureForm);
 
     return (
-        <div className="App">
+        <div> 
             <Row className="m-5">
-                <Col xs={0} sm={2} md={3} xl={4}></Col>
-                <Col xs={12} sm={10} md={6} xl={4}>
-                        <SalaryFormCard style={{width:'100%'}}>
+                <Col xs={0} ></Col>
+                <Col xs={12} >
+                        <SalaryFormCard>
                         </SalaryFormCard>             
                 </Col>
-                <Col xs={0} sm={2} md={3} xl={4}>
+                <Col xs={0} >
                 </Col>
             </Row>
             

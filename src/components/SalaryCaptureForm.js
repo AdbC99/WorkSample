@@ -32,11 +32,12 @@ const SalaryCaptureForm = () => {
 
             const json = await Api.salary(body);
 
-            throw new Error("SIlly")
+            // TODO: Replace these with a sensible modal
             alert('Success')
         }
         catch (error)
         {
+            // TODO: Replace these with a sensible modal
             alert(error);
         }
  
@@ -45,7 +46,7 @@ const SalaryCaptureForm = () => {
 
     return (
         <div>
-            <form onSubmit={onSubmit} className="m-5">
+            <form onSubmit={onSubmit} className="m-5" style={{maxWidth:'500', minWidth:'320'}}>
                 <Row>
                     <p className="ml-auto mr-auto mb-3">
                         <strong>Please enter your salary</strong>
@@ -60,7 +61,7 @@ const SalaryCaptureForm = () => {
                 <Row>
                     <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
                 </Row>
-                <Row>
+                <Row className="mt-4">
                     <Submit text='Submit'></Submit>
                 </Row>
             </form>
