@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {TextInput, NumberInput, Submit} from './InputFields';
+import {TextInput, NumberInput, Submit} from '../InputFields';
 import {Row} from 'react-bootstrap';
-import Api from '../helpers/Api'
+import Api from '../../helpers/Api'
 
 const SalaryCaptureForm = () => {
 
@@ -46,11 +46,11 @@ const SalaryCaptureForm = () => {
 
     return (
         <div>
-            <form onSubmit={onSubmit} className="m-5" style={{maxWidth:'500', minWidth:'320'}}>
-                <Row>
-                    <p className="ml-auto mr-auto mb-3">
-                        <strong>Please enter your salary</strong>
-                    </p>
+            <form onSubmit={onSubmit} className="m-3" style={{maxWidth:'500', minWidth:'320'}}>
+                <Row className="mb-4">
+                    <h4 className="">
+                        Tell us about your salary
+                    </h4>
                 </Row>
                 <Row>
                     <TextInput onChange={onChangeName} placeHolder="Name"></TextInput>
@@ -61,7 +61,7 @@ const SalaryCaptureForm = () => {
                 <Row>
                     <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
                 </Row>
-                <Row className="mt-4">
+                <Row className="">
                     <Submit text='Submit'></Submit>
                 </Row>
             </form>

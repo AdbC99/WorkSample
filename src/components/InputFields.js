@@ -18,7 +18,7 @@ const TextInput = ({onChange, placeHolder}) => {
     }
 
     return (
-        <div className="text-input-container">
+        <div className="text-input-container full-width">
             <input className="floating-label-input" type="text" onChange={handleChange}></input>
             <span class={(labelStaysUp)?"floating-label stay-up":"floating-label"}>{placeHolder}</span>
         </div>
@@ -29,7 +29,7 @@ const NumberInput = TextInput;
 
 const Submit = ({text}) => {
     return (
-        <input type="submit" value={text} ></input>
+        <input className='color-button ml-auto' type="submit" value={text} ></input>
     )
 }
 
