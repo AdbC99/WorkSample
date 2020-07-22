@@ -46,9 +46,9 @@ const SalaryCaptureForm = () => {
 
     return (
         <div>
-            <form onSubmit={onSubmit} className="m-3" style={{maxWidth:'500', minWidth:'320'}}>
+            <form onSubmit={onSubmit} className="m-3">
                 <Row className="mb-4">
-                    <h4 className="">
+                    <h4>
                         Tell us about your salary
                     </h4>
                 </Row>
