@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {TextInput, NumberInput, Submit} from './InputFields';
 import {Row} from 'react-bootstrap';
+import Api from '../helpers/Api'
 
 const SalaryCaptureForm = () => {
 
@@ -20,14 +21,25 @@ const SalaryCaptureForm = () => {
         setSalary(event.target.salary);
     }
 
-    const onSubmit = (event) => {
-        const body = {
-            salary: salary,
-            name: name,
-            dob: dob
+    const onSubmit = async (event) => {
+        try
+        {
+            const body = {
+                salary: salary,
+                name: name,
+                dob: dob
+            }
+
+            const json = await Api.salary(body);
+
+            throw new Error("SIlly")
+            alert('Success')
+        }
+        catch (error)
+        {
+            alert(error);
         }
  
-        alert(JSON.stringify(body))
         //event.preventDefault();
     }
 
