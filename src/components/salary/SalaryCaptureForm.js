@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {TextInput, NumberInput, Submit} from '../InputFields';
 import {Row} from 'react-bootstrap';
-import Api from '../../helpers/Api'
+import Api from '../../helpers/Api';
+import Loader from "react-spinners/PacmanLoader";
 
 const SalaryCaptureForm = () => {
 
     const [salary, setSalary] = useState(null);
     const [name, setName] = useState(null);
     const [dob, setDob] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [userId, setUserId] = useState(null);
 
     const onChangeName = (event) => {
         setName(event.target.value);
@@ -22,8 +25,6 @@ const SalaryCaptureForm = () => {
     }
 
     const formInputValid = () => {
-        console.log('formInputValid', salary, name, dob)
-
         if ((salary == null)||(salary === ''))
             return false;
         else if ((name == null)||(name === ''))
@@ -35,6 +36,8 @@ const SalaryCaptureForm = () => {
     }
 
     const onSubmit = async (event) => {
+        event.preventDefault();
+
         try
         {
             const body = {
@@ -43,41 +46,68 @@ const SalaryCaptureForm = () => {
                 dob: dob
             }
 
+            setLoading(true);
+            
             const json = await Api.salary(body);
+            console.log('Form submit complete', JSON.stringify(json));
 
-            // TODO: Replace these with a sensible modal
-            alert('Success')
+            setUserId("123456");
+
+            setLoading(false);
         }
         catch (error)
         {
             // TODO: Replace these with a sensible modal
             alert(error);
+            setLoading(false);
         }
- 
-        //event.preventDefault();
     }
 
     return (
         <div>
-            <form onSubmit={onSubmit} className="m-3">
-                <Row className="mb-4">
-                    <h4>
-                        Tell us about your salary
-                    </h4>
-                </Row>
-                <Row>
-                    <TextInput onChange={onChangeName} placeHolder="Name"></TextInput>
-                </Row>
-                <Row>
-                    <NumberInput onChange={onChangeDob} placeHolder="Salary (Annual)"></NumberInput>
-                </Row>
-                <Row>
-                    <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
-                </Row>
-                <Row className="">
-                    <Submit label='Submit' disable={!formInputValid()}></Submit>
-                </Row>
-            </form>
+            <div className="form-with-loader-container">
+                <div className="form-with-loader">
+                    <form onSubmit={onSubmit} className="m-3">
+                        <Row className="mb-4">
+                            {
+                                (userId == null)?
+                                    <h4>Tell us about your salary</h4>:
+                                    <h4>Thanks, your user id is {userId}</h4>
+                            }
+                        </Row>
+                            {
+                            (loading)?
+                                <div className="form-loader">
+                                    <Loader
+                                        size={40}
+                                        color={"#02B3A5"}
+                                        loading={loading}
+                                        css={
+                                            {
+                                                display:'block',
+                                                margin:'0 auto',
+                                            }
+                                        }
+                                    />
+                                </div>:
+                                <>
+                                    <Row>
+                                        <TextInput onChange={onChangeName} placeHolder="Name"></TextInput>
+                                    </Row>
+                                    <Row>
+                                        <NumberInput onChange={onChangeDob} placeHolder="Salary (Annual)"></NumberInput>
+                                    </Row>
+                                    <Row>
+                                        <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
+                                    </Row>
+                                </>
+                            }
+                            <Row>
+                                <Submit label='Submit' disable={!formInputValid()||loading}></Submit>
+                            </Row>
+                    </form>
+                </div>
+            </div> 
         </div>
     )
 }

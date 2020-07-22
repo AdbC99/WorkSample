@@ -4,3 +4,8 @@
     margin-right: auto;
     margin-left: auto;
 }
+
+.form-loader {
+    padding:120px 0;
+    margin:auto;
+}

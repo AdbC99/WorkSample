@@ -1,10 +1,10 @@
-const SALARY_URL = 'https://postman-echo.com/post'
+const SALARY_URL = 'https://reqres.in/api/users'
 
 const Api = {
     'salary': async (body) => {
         console.log("Doing POST: " + SALARY_URL);
     
-        fetch(SALARY_URL + "bookDate", {
+        fetch(SALARY_URL, {
             method:'POST',
             body:JSON.stringify(body)
         }).then((resp)=>{
