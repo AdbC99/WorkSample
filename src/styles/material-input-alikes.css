@@ -83,8 +83,10 @@ input:focus, textarea {
     transition: 1s ease;
 }
 
+.color-button:disabled {
+    background-color: #AAA;
+}
+
 .full-width {
     width: 100%;
 }
-
-

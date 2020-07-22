@@ -18,7 +18,20 @@ const SalaryCaptureForm = () => {
     }
 
     const onChangeSalary = (event) => {
-        setSalary(event.target.salary);
+        setSalary(event.target.value);
+    }
+
+    const formInputValid = () => {
+        console.log('formInputValid', salary, name, dob)
+
+        if ((salary == null)||(salary === ''))
+            return false;
+        else if ((name == null)||(name === ''))
+            return false;
+        else if ((dob == null)||(dob === ''))
+            return false;
+        else 
+            return true;
     }
 
     const onSubmit = async (event) => {
@@ -62,7 +75,7 @@ const SalaryCaptureForm = () => {
                     <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
                 </Row>
                 <Row className="">
-                    <Submit text='Submit'></Submit>
+                    <Submit label='Submit' disable={!formInputValid()}></Submit>
                 </Row>
             </form>
         </div>

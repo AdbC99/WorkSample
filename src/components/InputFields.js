@@ -2,6 +2,12 @@ import React, {useState} from 'react';
 import FloatingLabelInput from 'react-floating-label-input';
 import '../styles/material-input-alikes.css';
 
+const withValidNumber = WrappedComponent => ({onChange, ...props}) => {
+    return(
+        <WrappedComponent onChange={onChange} {...props}></WrappedComponent>
+    )
+}
+
 const TextInput = ({onChange, placeHolder}) => {
     const [labelStaysUp, setLabelStaysUp] = useState(false);
 
@@ -20,16 +26,22 @@ const TextInput = ({onChange, placeHolder}) => {
     return (
         <div className="text-input-container full-width">
             <input className="floating-label-input" type="text" onChange={handleChange}></input>
-            <span class={(labelStaysUp)?"floating-label stay-up":"floating-label"}>{placeHolder}</span>
+            <span className={(labelStaysUp)?"floating-label stay-up":"floating-label"}>{placeHolder}</span>
         </div>
     );
 }
 
-const NumberInput = TextInput;
+const NumberInput = withValidNumber(TextInput);
 
-const Submit = ({text}) => {
+const Submit = ({label, disable}) => {
     return (
-        <input className='color-button ml-auto' type="submit" value={text} ></input>
+        <>
+            {
+                (disable === true)?
+                    <input className='color-button ml-auto' type="submit" value={label} disabled></input>:
+                    <input className='color-button ml-auto' type="submit" value={label} ></input>
+            }
+        </>   
     )
 }
 
