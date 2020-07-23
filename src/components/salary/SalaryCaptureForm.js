@@ -52,14 +52,19 @@ const SalaryCaptureForm = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
+        const body = {
+            salary: salary,
+            name: name,
+            dob: dob
+        }
+
+        // Clear form, shouldn't need to clear form errors because we can't get here if there are errors
+        setSalary("");
+        setDob("");
+        setName("");
+
         try
         {
-            const body = {
-                salary: salary,
-                name: name,
-                dob: dob
-            }
-
             setLoading(true);
             
             const json = await Api.salary(body);
