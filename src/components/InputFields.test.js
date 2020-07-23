@@ -14,6 +14,8 @@ test('test text input changes as required', () => {
 
     const input = rend.getByTestId('text-input');
 
+    expect(input.value).toBe("");
+
     fireEvent.change(input, { target: { value: "bob" } });
     
     expect(input.value).toBe("bob");
