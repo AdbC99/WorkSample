@@ -6,9 +6,9 @@ import Loader from "react-spinners/PacmanLoader";
 
 const SalaryCaptureForm = () => {
 
-    const [salary, setSalary] = useState(null);
-    const [name, setName] = useState(null);
-    const [dob, setDob] = useState(null);
+    const [salary, setSalary] = useState("");
+    const [name, setName] = useState("");
+    const [dob, setDob] = useState("");
     const [loading, setLoading] = useState(false);
     const [userId, setUserId] = useState(null);
 
@@ -92,13 +92,13 @@ const SalaryCaptureForm = () => {
                                 </div>:
                                 <>
                                     <Row>
-                                        <TextInput onChange={onChangeName} placeHolder="Name"></TextInput>
+                                        <TextInput data-testid="name" onChange={onChangeName} placeHolder="Name" value={name}></TextInput>
                                     </Row>
                                     <Row>
-                                        <NumberInput onChange={onChangeDob} placeHolder="Salary (Annual)"></NumberInput>
+                                        <NumberInput data-testid="salary" onChange={onChangeDob} placeHolder="Salary (Annual)" value={salary}></NumberInput>
                                     </Row>
                                     <Row>
-                                        <TextInput onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)"></TextInput>
+                                        <TextInput data-testid="dob" onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)" value={dob}></TextInput>
                                     </Row>
                                 </>
                             }

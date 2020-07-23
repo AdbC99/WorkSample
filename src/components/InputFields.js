@@ -8,7 +8,7 @@ const withValidNumber = WrappedComponent => ({onChange, ...props}) => {
     )
 }
 
-const TextInput = ({onChange, placeHolder}) => {
+const TextInput = ({onChange, placeHolder, ...props}) => {
     const [labelStaysUp, setLabelStaysUp] = useState(false);
 
     const handleChange = (event) =>
@@ -25,7 +25,7 @@ const TextInput = ({onChange, placeHolder}) => {
 
     return (
         <div className="text-input-container full-width">
-            <input className="floating-label-input" type="text" onChange={handleChange}></input>
+            <input data-testid='text-input' className="floating-label-input" type="text" onChange={handleChange} {...props}></input>
             <span className={(labelStaysUp)?"floating-label stay-up":"floating-label"}>{placeHolder}</span>
         </div>
     );
