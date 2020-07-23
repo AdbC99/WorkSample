@@ -85,8 +85,8 @@ const SalaryCaptureForm = () => {
                         <Row className="mb-4">
                             {
                                 (userId == null)?
-                                    <h4>Tell us about your salary</h4>:
-                                    <h4>Thanks, your user id is {userId}</h4>
+                                    <h3>Tell us about your salary</h3>:
+                                    <h3>Thanks, your user id is {userId}</h3>
                             }
                         </Row>
                             {
@@ -117,7 +117,7 @@ const SalaryCaptureForm = () => {
                                 </>
                             }
                             <Row>
-                                <Submit label='Submit' disable={!formInputValid()||loading}></Submit>
+                                <Submit label='SUBMIT' disable={!formInputValid()||loading}></Submit>
                             </Row>
                     </form>
                 </div>

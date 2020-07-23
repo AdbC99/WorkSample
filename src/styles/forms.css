@@ -3,6 +3,8 @@
     max-width: 500px;
     margin-right: auto;
     margin-left: auto;
+    box-shadow: 5px 5px #00000002;
+    border-radius: 6px;
 }
 
 .form-loader {
