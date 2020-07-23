@@ -1,11 +1,11 @@
 import React from 'react';
 import {TextInput} from './InputFields';
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent} from "@testing-library/react";
 
-test('test text input changes as required', () => {
-
-    const onChange = () => {
-        console.log('Test fired onChange');
+test('test text input changes as required', (done) => {
+    const onChange = (event) => {
+        expect(event.target.value).toBe("bob");
+        done();
     }
 
     const rend = render(
@@ -17,6 +17,6 @@ test('test text input changes as required', () => {
     expect(input.value).toBe("");
 
     fireEvent.change(input, { target: { value: "bob" } });
-    
+
     expect(input.value).toBe("bob");
 });
