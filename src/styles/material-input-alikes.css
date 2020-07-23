@@ -3,7 +3,7 @@ input:focus, textarea {
     outline: none !important;
 }
 
-.text-input-container {
+.floating-input-container {
     padding-bottom: 4px;
 }
 
@@ -46,7 +46,16 @@ input:focus, textarea {
     text-align: left;
 }
 
-.text-input-container .floating-label {
+.floating-input-error-label {
+    position: absolute;
+    left: 20px;
+    color: #F00;
+    font-size: 0.8em;
+    text-align: left;
+    margin-right: auto;
+}
+
+.floating-input-container .floating-label {
     position: relative;
     pointer-events: none;
     left: 8px;

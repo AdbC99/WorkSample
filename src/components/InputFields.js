@@ -1,14 +1,78 @@
 import React, {useState} from 'react';
-import FloatingLabelInput from 'react-floating-label-input';
 import '../styles/material-input-alikes.css';
 
-const withValidNumber = WrappedComponent => ({onChange, ...props}) => {
+const withValidName = WrappedComponent => ({onChange, ...props}) => {
+
+    const handleChange = (event)=>{
+
+        // Remove punctuation
+        event.target.value = event.target.value.replace(/[^ZA-Z-Za-z-'.\s]/g,'');
+
+        if (onChange)  onChange(event);
+    }
+
     return(
-        <WrappedComponent onChange={onChange} {...props}></WrappedComponent>
+        <WrappedComponent onChange={handleChange} {...props}></WrappedComponent>
     )
 }
 
-const TextInput = ({onChange, placeHolder, ...props}) => {
+const withValidNumber = WrappedComponent => ({onChange, onError, ...props}) => {
+
+    const [err, setErr] = useState(null);
+
+    const handleChange = (event)=>{
+  
+        event.target.value = event.target.value.replace(/\D/g,'');
+
+        if (event.target.value.startsWith("0"))
+        {
+            let error = "Salary cannot start with a zero";
+            setErr(error);
+            if (onError) onError(error)
+        }
+        else
+        {
+            setErr(null);
+            if (onError) onError(null)
+        }
+
+        if (onChange)  onChange(event);
+    }
+
+    return(
+        <WrappedComponent onChange={handleChange} {...props} error={err}></WrappedComponent>
+    )
+}
+
+const withValidDate = WrappedComponent => ({onChange, onError, ...props}) => {
+
+    const [err, setErr] = useState(null);
+
+    const handleChange = (event)=>{
+  
+        event.target.value = event.target.value.replace(/[^0-9/]+/g,'');
+
+        if (!event.target.value.match('^[0-9]{2}/[0-9]{2}/[0-9]{2}$'))
+        {
+            let error = "Date format must be DD/MM/YY";
+            setErr(error);
+            if (onError) onError(error);
+        }
+        else
+        {
+            setErr(null);
+            if (onError)  onError(null);
+        }
+
+        if (onChange) onChange(event);
+    }
+
+    return(
+        <WrappedComponent onChange={handleChange} {...props} error={err}></WrappedComponent>
+    )
+}
+
+const TextInput = ({onChange, placeHolder, error, ...props}) => {
     const [labelStaysUp, setLabelStaysUp] = useState(false);
 
     const handleChange = (event) =>
@@ -24,14 +88,19 @@ const TextInput = ({onChange, placeHolder, ...props}) => {
     }
 
     return (
-        <div className="text-input-container full-width">
+        <div className="floating-input-container full-width">
             <input data-testid='text-input' className="floating-label-input" type="text" onChange={handleChange} {...props}></input>
             <span className={(labelStaysUp)?"floating-label stay-up":"floating-label"}>{placeHolder}</span>
+            <span className="floating-input-error-label">{error}</span>
         </div>
     );
 }
 
+const NameInput = withValidName(TextInput);
 const NumberInput = withValidNumber(TextInput);
+// FIXME: Using a custom component here to display Date to sit inline with the work specification
+// however a date picker component with calendar would be nicer
+const DateInput = withValidDate(TextInput);
 
 const Submit = ({label, disable}) => {
     return (
@@ -48,5 +117,7 @@ const Submit = ({label, disable}) => {
 export {
     TextInput,
     NumberInput,
+    DateInput,
+    NameInput,
     Submit
 }

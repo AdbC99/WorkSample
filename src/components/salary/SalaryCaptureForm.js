@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, NumberInput, Submit} from '../InputFields';
+import {NameInput, NumberInput, DateInput, Submit} from '../InputFields';
 import {Row} from 'react-bootstrap';
 import Api from '../../helpers/Api';
 import Loader from "react-spinners/PacmanLoader";
@@ -7,8 +7,10 @@ import Loader from "react-spinners/PacmanLoader";
 const SalaryCaptureForm = () => {
 
     const [salary, setSalary] = useState("");
+    const [salaryError, setSalaryError] = useState("");
     const [name, setName] = useState("");
     const [dob, setDob] = useState("");
+    const [dobError, setDobError] = useState("");
     const [loading, setLoading] = useState(false);
     const [userId, setUserId] = useState(null);
 
@@ -24,12 +26,24 @@ const SalaryCaptureForm = () => {
         setSalary(event.target.value);
     }
 
+    const onDobError = (error) => {
+        setDobError(error);
+    }
+
+    const onSalaryError = (error) => {
+        setSalaryError(error);
+    }
+
     const formInputValid = () => {
         if ((salary == null)||(salary === ''))
             return false;
         else if ((name == null)||(name === ''))
             return false;
         else if ((dob == null)||(dob === ''))
+            return false;
+        else if (dobError)
+            return false;
+        else if (salaryError)
             return false;
         else 
             return true;
@@ -92,13 +106,13 @@ const SalaryCaptureForm = () => {
                                 </div>:
                                 <>
                                     <Row>
-                                        <TextInput data-testid="name" onChange={onChangeName} placeHolder="Name" value={name}></TextInput>
+                                        <NameInput data-testid="name" onChange={onChangeName} placeHolder="Name" value={name}></NameInput>
                                     </Row>
                                     <Row>
-                                        <NumberInput data-testid="salary" onChange={onChangeDob} placeHolder="Salary (Annual)" value={salary}></NumberInput>
+                                        <NumberInput data-testid="salary" onChange={onChangeSalary} onError={onSalaryError} placeHolder="Salary (Annual)" value={salary}></NumberInput>
                                     </Row>
                                     <Row>
-                                        <TextInput data-testid="dob" onChange={onChangeSalary} placeHolder="Date of Birth (DD/MM/YY)" value={dob}></TextInput>
+                                        <DateInput data-testid="dob" onChange={onChangeDob} onError={onDobError} placeHolder="Date of Birth (DD/MM/YY)" value={dob}></DateInput>
                                     </Row>
                                 </>
                             }
