@@ -89,9 +89,11 @@ const SalaryCaptureForm = () => {
                     <form onSubmit={onSubmit} className="m-3">
                         <Row className="mb-4">
                             {
-                                (userId == null)?
-                                    <h3>Tell us about your salary</h3>:
-                                    <h3>Thanks, your user id is {userId}</h3>
+                                (loading)?
+                                    <h3>Just reporting back to base...</h3>:
+                                        (userId == null)?
+                                        <h3>Tell us about your salary</h3>:
+                                        <h3>Thanks, your user id is {userId}</h3>
                             }
                         </Row>
                             {
