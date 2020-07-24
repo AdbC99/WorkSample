@@ -4,7 +4,7 @@ This is a small project showing a basic input form with some buttons styled as i
 
 ## Available Scripts
 
-To get started run
+To get started clone the repository and then in the root run
 
 #### npm install
 
