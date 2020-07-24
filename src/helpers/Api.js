@@ -1,3 +1,4 @@
+// The API provided in the test specification didn't work so the following has been used as a substitute
 const SALARY_URL = 'https://reqres.in/api/users'
 
 const Api = {
