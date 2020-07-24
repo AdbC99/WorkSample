@@ -6,12 +6,12 @@ This is a small project showing a basic input form with some buttons styled as i
 
 To get started run
 
-### `npm install
+#### npm install
 
 Once that has completed then you can either start serving the app by typing:
 
-### `npm start
+#### npm start
 
 or you can run the single unit test with
 
-### `npm test
+#### npm test
