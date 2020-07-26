@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {NameInput, NumberInput, DateInput, Submit} from '../InputFields';
+import {NameInput, NumberInput, DateInput, Submit} from '../InputFields/InputFields';
 import {Row} from 'react-bootstrap';
 import Api from '../../helpers/Api';
 import Loader from "react-spinners/PacmanLoader";
+import './SalaryCaptureForm.css';
 
 const SalaryCaptureForm = () => {
 

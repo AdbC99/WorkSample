@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
-import SalaryCaptureForm from './components/salary/SalaryCaptureForm'
+import SalaryCaptureForm from './components/SalaryCaptureForm/SalaryCaptureForm'
 import {Card} from 'react-bootstrap';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/forms.css'
+import './styles/floating-card.css'
 
 function App() {    
     return (

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../styles/material-input-alikes.css';
+import './InputFields.css';
 
 const withValidName = WrappedComponent => ({onChange, ...props}) => {
 
