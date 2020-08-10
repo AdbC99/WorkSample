@@ -1,6 +1,6 @@
 ## Work Sample
 
-This is a small project showing a basic input form with some buttons styled as if they were done with material.io
+This is a small project showing a basic input form with some text fields styled as if they were done with material.io
 
 ## Available Scripts
 
