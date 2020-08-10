@@ -12,6 +12,6 @@ Once that has completed then you can either start serving the app by typing:
 
 `npm start`
 
-or you can run the single unit test with
+A single unit test is given (rather than demonstrating complete coverage) and can be run using:
 
 `npm test`
